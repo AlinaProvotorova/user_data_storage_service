@@ -14,7 +14,6 @@ Cервис для хранения данных о пользователях.
 
 - Python
 - FastAPI
-- Google API
 - SQLAlchemy
 - Pydantic
 - Alembic
@@ -68,3 +67,4 @@ SUPERUSER_LAST_NAME="..."  #фамилия суперпользователя
 
 - После запуска перейдите по [ссылке документации Swagger](http://127.0.0.1:8000/docs)
 
+Автор: [Провоторова Алина Игоревна](https://t.me/alinamalina998)
