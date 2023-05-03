@@ -40,7 +40,7 @@ SUPERUSER_LAST_NAME="..."  #фамилия суперпользователя
 - Активируйте виртуальное окружение командой:
 
 ```commandline
-...cat_charity_fun $ python -m virtualenv venv && .\venv\Scripts\activate
+...$ python -m virtualenv venv && .\venv\Scripts\activate
 ```
 
 - Установите зависимости командой:
