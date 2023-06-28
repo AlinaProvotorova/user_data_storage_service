@@ -1,5 +1,20 @@
+import logging
 from typing import Optional
+
+import uvicorn
 from pydantic import BaseSettings, EmailStr
+from uvicorn.logging import DefaultFormatter
+
+log_config = uvicorn.config.LOGGING_CONFIG
+log_config["formatters"]["access"]["fmt"] = "%(asctime)s - %(levelname)s - %(message)s"
+logger = logging.getLogger("uvicorn")
+handler = logging.StreamHandler()
+console_formatter = uvicorn.logging.ColourizedFormatter(
+    "{levelprefix:<8} {message}",
+    style="{",
+    use_colors=True
+)
+handler.setFormatter(console_formatter)
 
 
 class Settings(BaseSettings):

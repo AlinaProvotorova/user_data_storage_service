@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 
 from app.api.user import router
-from app.core.config import settings
+from app.core.config import settings, log_config, logger
 from app.core.init_db import create_first_superuser
 
 app = FastAPI(title=settings.app_title)
@@ -14,7 +14,7 @@ async def startup():
     await create_first_superuser()
 
 
-print('Документация доступна по адресу: http://127.0.0.1:8000/docs')
+logger.info('Документация доступна по адресу: http://127.0.0.1:5000/docs')
 
 if __name__ == '__main__':
     import uvicorn
@@ -22,4 +22,5 @@ if __name__ == '__main__':
     uvicorn.run(
         'main:app',
         reload=True,
+        log_config=log_config
     )

@@ -1,6 +1,7 @@
+import logging
 from typing import Optional, Union
 
-from fastapi import Depends, Request
+from fastapi import Depends, Request, Response
 from fastapi_users import (
     BaseUserManager, IntegerIDMixin, InvalidPasswordException
 )
@@ -8,7 +9,7 @@ from fastapi_users import (
 from fastapi_users_db_sqlalchemy import SQLAlchemyUserDatabase
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.core.config import settings
+from app.core.config import settings, logger
 from app.core.db import get_async_session
 from app.models.user import User
 from app.schemas.user import UserCreate
@@ -40,13 +41,14 @@ class UserManager(IntegerIDMixin, BaseUserManager[User, int]):
             self,
             user: User,
             request: Optional[Request] = None,
+            response: Optional[Response] = None,
     ):
-        print(f"Пользователь {user.email} вошел в систему.")
+        logger.info(f"Пользователь {user.email} вошел в систему.")
 
     async def on_after_register(
             self, user: User, request: Optional[Request] = None
     ):
-        print(f'Пользователь {user.email} зарегистрирован.')
+        logger.info(f'Пользователь {user.email} зарегистрирован.')
 
 
 async def get_user_manager(user_db=Depends(get_user_db)):
